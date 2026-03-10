@@ -1,0 +1,4 @@
+flask
+mysqlclient
+pandas
+openpyxl

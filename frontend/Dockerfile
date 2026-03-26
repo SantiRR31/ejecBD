@@ -9,9 +9,12 @@ COPY requirements.txt .
 RUN pip install -r requirements.txt
 
 COPY . .
-# Inicializar reflex
-#RUN reflex init
 
-# Exponer el puerto del frontend y del backend interno de Reflex
-EXPOSE 3000
-CMD ["reflex", "run", "--env", "prod"]
+# Inicializar reflex y preparar producción
+RUN reflex init
+
+# Exponer el puerto del frontend (3000) y de la API de Reflex (8000)
+EXPOSE 3000 8000
+
+# El comando en producción para Reflex con API_URL configurada
+CMD ["reflex", "run", "--env", "prod", "--frontend-port", "3000", "--backend-port", "8000"]

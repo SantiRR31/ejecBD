@@ -1,4 +1,6 @@
 import reflex as rx
 
-class Config(rx.Config):
-    app_name = "frontend"
+config = rx.Config(
+    app_name="frontend",
+    api_url="http://localhost:8000",
+)

@@ -9,8 +9,6 @@ ENV PYTHONUNBUFFERED 1
 # - mariadb-client: Necesario para ejecutar 'mariadb-dump'
 # - libmariadb-dev y gcc: Necesarios para instalar el driver 'mysqlclient' de Python
 RUN apt-get update && apt-get install -y \
-    mariadb-client \
-    libmariadb-dev \
     gcc \
     pkg-config \
     --no-install-recommends && \

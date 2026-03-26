@@ -1,4 +1,6 @@
 flask
-mysqlclient
+flask-cors
+sqlalchemy
+mysql-connector-python
 pandas
 openpyxl

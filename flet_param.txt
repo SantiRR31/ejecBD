@@ -1,0 +1,251 @@
+Python Library Documentation: class FilePicker in module flet.controls.services.file_picker
+
+class FFiilleePPiicckkeerr(flet.controls.services.service.Service)
+ |  FilePicker(
+ |      on_upload: Union[Callable[[], Any], Callable[[flet.controls.services.file_picker.FilePickerUploadEvent], Any], NoneType] = None,
+ |      *,
+ |      data: Any = None,
+ |      key: Optional[ForwardRef('KeyValue')] = None,
+ |      ref: dataclasses.InitVar[typing.Optional[flet.controls.ref.Ref[ForwardRef('BaseControl')]]] = None
+ |  ) -> None
+ |
+ |  A control that allows you to use the native file explorer to pick single or     multiple files, with extensions filtering support and upload.
+ |
+ |  Danger: Important
+ |      On Linux, this control requires
+ |      [Zenity](https://help.gnome.org/users/zenity/stable/) when running Flet
+ |      as a desktop app. It is not required when running Flet in a browser.
+ |
+ |      To install Zenity on Ubuntu/Debian run the following commands:
+ |      ```bash
+ |      sudo apt-get install zenity
+ |      ```
+ |
+ |  Method resolution order:
+ |      FilePicker
+ |      flet.controls.services.service.Service
+ |      flet.controls.base_control.BaseControl
+ |      builtins.object
+ |
+ |  Methods defined here:
+ |
+ |  ____eeqq____(self, other)
+ |      Return self==value.
+ |
+ |  ____iinniitt____(
+ |      self,
+ |      on_upload: Union[Callable[[], Any], Callable[[flet.controls.services.file_picker.FilePickerUploadEvent], Any], NoneType] = None,
+ |      *,
+ |      data: Any = None,
+ |      key: Optional[ForwardRef('KeyValue')] = None,
+ |      ref: dataclasses.InitVar[typing.Optional[flet.controls.ref.Ref[ForwardRef('BaseControl')]]] = None
+ |  ) -> None
+ |      Initialize self.  See help(type(self)) for accurate signature.
+ |
+ |  ____ppoosstt__iinniitt____ = new_post_init(self: ~T, *args) from flet.controls.base_control._apply_control.<locals>
+ |      Set the type and isolation only if explicitly provided.
+ |
+ |  ____rreeppllaaccee____ = _replace(self, /, **changes) from dataclasses
+ |
+ |  ____rreepprr____(self)
+ |      Return repr(self).
+ |
+ |  async ggeett__ddiirreeccttoorryy__ppaatthh(
+ |      self,
+ |      dialog_title: Optional[str] = None,
+ |      initial_directory: Optional[str] = None
+ |  ) -> Optional[str]
+ |      Selects a directory and returns its absolute path.
+ |
+ |      Args:
+ |          dialog_title: The title of the dialog window. Defaults to [`FilePicker`].
+ |          initial_directory: The initial directory where the dialog should open.
+ |
+ |      Returns:
+ |          The selected directory path or `None` if the dialog was cancelled.
+ |
+ |      Raises:
+ |          FletUnsupportedPlatformException: If called in web mode.
+ |
+ |  async ppiicckk__ffiilleess(
+ |      self,
+ |      dialog_title: Optional[str] = None,
+ |      initial_directory: Optional[str] = None,
+ |      file_type: flet.controls.services.file_picker.FilePickerFileType = <FilePickerFileType.ANY: 'any'>,
+ |      allowed_extensions: Optional[list[str]] = None,
+ |      allow_multiple: bool = False,
+ |      with_data: bool = False
+ |  ) -> list[flet.controls.services.file_picker.FilePickerFile]
+ |      Opens a pick file dialog.
+ |
+ |      Tip:
+ |          To upload the picked files, pass them to :meth:`upload` method,
+ |          along with their upload URLs.
+ |
+ |      Args:
+ |          dialog_title: The title of the dialog window.
+ |          initial_directory: The initial directory where the dialog should open.
+ |          file_type: The file types allowed to be selected.
+ |          allow_multiple: Allow the selection of multiple files at once.
+ |          with_data: Read selected file contents into
+ |              :attr:`~flet.FilePickerFile.bytes`.
+ |          allowed_extensions: The allowed file extensions. Has effect only if
+ |              `file_type` is :attr:`flet.FilePickerFileType.CUSTOM`.
+ |
+ |      Returns:
+ |          A list of selected files.
+ |
+ |  async ssaavvee__ffiillee(
+ |      self,
+ |      dialog_title: Optional[str] = None,
+ |      file_name: Optional[str] = None,
+ |      initial_directory: Optional[str] = None,
+ |      file_type: flet.controls.services.file_picker.FilePickerFileType = <FilePickerFileType.ANY: 'any'>,
+ |      allowed_extensions: Optional[list[str]] = None,
+ |      src_bytes: Optional[bytes] = None
+ |  ) -> Optional[str]
+ |      Opens a save file dialog which lets the user select a file path and a file         name to save a file.
+ |
+ |      Note:
+ |          - On desktop this method only opens a dialog for the user to select
+ |              a location and file name, and returns the chosen path. The file
+ |              itself is not created or saved.
+ |
+ |      Args:
+ |          dialog_title: The title of the dialog window.
+ |          file_name: The default file name.
+ |          initial_directory: The initial directory where the dialog should open.
+ |          file_type: The file types allowed to be selected.
+ |          src_bytes: The contents of a file. Must be provided in web,
+ |              iOS or Android modes.
+ |          allowed_extensions: The allowed file extensions. Has effect only if
+ |              `file_type` is
+ |              :attr:`flet.FilePickerFileType.CUSTOM`.
+ |
+ |      Raises:
+ |          ValueError: If `src_bytes` is not provided, when called in web mode,
+ |              on iOS or Android.
+ |          ValueError: If `file_name` is not provided in web mode.
+ |
+ |  async uuppllooaadd(
+ |      self,
+ |      files: list[flet.controls.services.file_picker.FilePickerUploadFile]
+ |  )
+ |      Uploads picked files to specified upload URLs.
+ |
+ |      Before calling this method, :meth:`pick_files` first has to be
+ |      called to ensure the internal file picker selection is not empty.
+ |
+ |      Once called, Flet asynchronously starts uploading selected files
+ |      one-by-one and reports the progress via :attr:`on_upload` event.
+ |
+ |      Args:
+ |          files: A list of :class:`~flet.FilePickerUploadFile`, where
+ |              each item specifies which file to upload, and where
+ |              (with `PUT` or `POST`).
+ |
+ |  ----------------------------------------------------------------------
+ |  Data descriptors defined here:
+ |
+ |  oonn__uuppllooaadd
+ |
+ |  ----------------------------------------------------------------------
+ |  Data and other attributes defined here:
+ |
+ |  ____aannnnoottaattiioonnss____ = {'on_upload': typing.Union[typing.Callable[[], typin...
+ |
+ |  ____ddaattaaccllaassss__ffiieellddss____ = {'_c': Field(name='_c',type=<class 'str'>,defau...
+ |
+ |  ____ddaattaaccllaassss__ppaarraammss____ = _DataclassParams(init=True,repr=True,eq=True,or...
+ |
+ |  ____hhaasshh____ = None
+ |
+ |  ____mmaattcchh__aarrggss____ = ('on_upload',)
+ |
+ |  ----------------------------------------------------------------------
+ |  Methods inherited from flet.controls.services.service.Service:
+ |
+ |  iinniitt(self)
+ |      Called after control instance initialization and before         the first build / update cycle.
+ |
+ |      Override this hook to perform lightweight setup that depends on initialized
+ |      fields. Do not call `update()` here.
+ |
+ |  ----------------------------------------------------------------------
+ |  Methods inherited from flet.controls.base_control.BaseControl:
+ |
+ |  ____ssttrr____(self)
+ |      Return a debug-friendly control identifier string.
+ |
+ |  bbeeffoorree__eevveenntt(self, e: flet.controls.control_event.Event[typing.Any])
+ |      Intercept an event before its handler is executed.
+ |
+ |      Return `False` to cancel dispatch. Return `True` or `None` to continue
+ |      normal event processing.
+ |
+ |  bbeeffoorree__uuppddaattee(self)
+ |      This method is called every time when this control is being updated.
+ |
+ |      Note:
+ |          Make sure not to call/request an `update()` here.
+ |
+ |  bbuuiilldd(self)
+ |      Called once during control initialization to define its child controls.
+ |      `page` property is available/usable in this method.
+ |
+ |  ddiidd__mmoouunntt(self)
+ |      Called after the control is mounted into the page tree.
+ |
+ |      Override to start resources that require an attached page, for example
+ |      subscriptions, timers, or service listeners.
+ |
+ |  iiss__iissoollaatteedd(self)
+ |      Return whether this control is marked as isolated.
+ |
+ |      Isolated controls are excluded from parent-driven update traversal and
+ |      are expected to manage their own update boundaries.
+ |
+ |  uuppddaattee(self) -> None
+ |      Request a UI update for this control.
+ |
+ |      Call after changing control state or properties. The control must be
+ |      attached to a page and not marked as frozen.
+ |
+ |  wwiillll__uunnmmoouunntt(self)
+ |      Called before the control is removed from the page tree.
+ |
+ |      Override to dispose resources created in `did_mount()`, such as
+ |      subscriptions, timers, or external handles.
+ |
+ |  ----------------------------------------------------------------------
+ |  Readonly properties inherited from flet.controls.base_control.BaseControl:
+ |
+ |  ppaaggee
+ |      The page to which this control belongs to.
+ |
+ |  ppaarreenntt
+ |      The direct ancestor(parent) of this control.
+ |
+ |      It defaults to `None` and will only have a value when this control is mounted
+ |      (added to the page tree).
+ |
+ |      The `Page` control (which is the root of the tree) is an exception - it always
+ |      has `parent=None`.
+ |
+ |  ----------------------------------------------------------------------
+ |  Data descriptors inherited from flet.controls.base_control.BaseControl:
+ |
+ |  ____ddiicctt____
+ |      dictionary for instance variables
+ |
+ |  ____wweeaakkrreeff____
+ |      list of weak references to the object
+ |
+ |  kkeeyy
+ |
+ |  ----------------------------------------------------------------------
+ |  Data and other attributes inherited from flet.controls.base_control.BaseControl:
+ |
+ |  ddaattaa = None
+ |
+ |  rreeff = None
